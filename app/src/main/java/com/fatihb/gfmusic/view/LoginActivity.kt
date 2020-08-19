@@ -19,7 +19,6 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-
     }
 
     fun enterAccount(view: View) {

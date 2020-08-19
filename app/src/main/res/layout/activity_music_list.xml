@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C1B1B"
+    android:background="#85452C"
     tools:context=".view.MusicList">
 
 
@@ -22,6 +22,7 @@
         android:onClick="goIntroScreen"/>
 
     <ListView
+        android:id="@+id/musicList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="1dp"
