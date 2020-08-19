@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1068928017549",
+    "firebase_url": "https://gf-music.firebaseio.com",
+    "project_id": "gf-music",
+    "storage_bucket": "gf-music.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068928017549:android:850c602442e17a1f2c2ec4",
+        "android_client_info": {
+          "package_name": "com.fatihb.gfmusic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1068928017549-j449su0fududqemrknmls3ra8bt49nku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa-Y1zsVx6b-aiHUXb2K_jvrnJdkdfuYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1068928017549-j449su0fududqemrknmls3ra8bt49nku.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.IntroScreen">
+
+    <VideoView
+        android:id="@+id/video_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#CC433F3F"/>
+
+    <TextView
+        android:id="@+id/Logo"
+        android:layout_width="95dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="G.F"
+        android:textSize="36sp"
+        android:textColor="#BD4A1C"
+        android:shadowColor="#000000"
+        android:shadowRadius="30"
+        android:shadowDy="15"/>
+
+    <Button
+        android:id="@+id/Login"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="60dp"
+        android:background="@android:color/transparent"
+        android:lineSpacingExtra="8sp"
+        android:onClick="enterLogin"
+        android:text="Giriş Yap"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="#BF5126"/>
+
+    <Button
+        android:id="@+id/SignUp"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="60dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="#FFFFFF"
+        android:lineSpacingExtra="8sp"
+        android:onClick="enterSignUp"
+        android:text="Üye Ol"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:typeface="normal"
+        android:textColor="#1B1A1A"/>
+
+
+    <LinearLayout
+        android:id="@+id/indicatorsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/Login"
+        android:layout_below="@+id/Logo"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:gravity="center"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/introSlider"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/Login"
+        android:layout_below="@+id/Logo"
+        android:overScrollMode="never" />
+
+
+</RelativeLayout>
