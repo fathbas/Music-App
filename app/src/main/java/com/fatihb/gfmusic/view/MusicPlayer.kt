@@ -48,10 +48,6 @@ class MusicPlayer : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val bundle =arguments
-
-        musName.text = arguments?.getString("musicName").toString()
     }
 
     override fun onResume() {
@@ -62,6 +58,7 @@ class MusicPlayer : Fragment() {
             cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.AudioColumns._ID))
                 .toLong()
         ))
+        musName.text = nameList[position]
 
         var minute = py.duration/60000
         var second = (py.duration%1000)/100*10
@@ -96,7 +93,6 @@ class MusicPlayer : Fragment() {
         }
 
             skipPrev.setOnClickListener {
-                py.stop()
                 py.stop()
                 py.reset()
                 py.release()

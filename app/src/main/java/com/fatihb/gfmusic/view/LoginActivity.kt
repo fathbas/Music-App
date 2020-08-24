@@ -27,10 +27,14 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener { task->
 
                 if (task.isSuccessful){
-                    Toast.makeText(applicationContext,"Hoşgeldiniz: ${auth.currentUser!!.displayName.toString()} bey",Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this,MusicList::class.java)
-                    startActivity(intent)
-                    finish()
+                    if (auth.currentUser!!.isEmailVerified){
+                        Toast.makeText(applicationContext,"Hoşgeldiniz: ${auth.currentUser!!.displayName.toString()} bey",Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this,MusicList::class.java)
+                        startActivity(intent)
+                        finish()
+                    }else{
+                        Toast.makeText(applicationContext,"Lütfen e-postanızı aktive edin.",Toast.LENGTH_SHORT).show()
+                    }
                 }
             }.addOnFailureListener { exception ->
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()

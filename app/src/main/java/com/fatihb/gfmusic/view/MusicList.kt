@@ -11,14 +11,14 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.fatihb.gfmusic.BaseActivtiy.BaseActivity
 import com.fatihb.gfmusic.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_music_list.*
 
-class MusicList : AppCompatActivity() {
+class MusicList : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
 
@@ -68,24 +68,9 @@ class MusicList : AppCompatActivity() {
         musicList.adapter = adapter
 
         musicList.setOnItemClickListener { parent, view, position, id ->
-
             val fragment = MusicPlayer()
-
-            val bundle = Bundle()
-
-            bundle.putString("musicName", listOfSong[position])
-
-            fragment.arguments = bundle
-
             fragment.setData(songResolver, songCursor, songUri, position, listOfSong,exit,refreshLay,musicList)
-
-            val fragmentManager = supportFragmentManager
-
-            val fragmentTransaction = fragmentManager.beginTransaction()
-
-            fragmentTransaction.replace(R.id.mediaPlayer, fragment).commit()
-
-
+            openFragment(fragment, R.id.mediaPlayer)
         }
     }
 
