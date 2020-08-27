@@ -5,11 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.fatihb.gfmusic.model.IntroSlide
 import com.fatihb.gfmusic.R
 
-class IntroSliderAdapter(private val introSlides: List<IntroSlide>)
+class IntroSliderAdapter(private val introSlides: ArrayList<IntroSlide>, private val viewPager2: ViewPager2)
     :RecyclerView.Adapter<IntroSliderAdapter.IntroSlideViewHolder>(){
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntroSlideViewHolder {
         return IntroSlideViewHolder(
@@ -23,6 +25,9 @@ class IntroSliderAdapter(private val introSlides: List<IntroSlide>)
 
     override fun onBindViewHolder(holder: IntroSlideViewHolder, position: Int) {
         holder.bind(introSlides[position])
+        if (position == introSlides.size - 2){
+            viewPager2.post(run)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -37,5 +42,9 @@ class IntroSliderAdapter(private val introSlides: List<IntroSlide>)
             textTitle.text = introSlide.title
             textDescription.text = introSlide.description
         }
+    }
+    private val run = Runnable{
+        introSlides.addAll(introSlides)
+        notifyDataSetChanged()
     }
 }

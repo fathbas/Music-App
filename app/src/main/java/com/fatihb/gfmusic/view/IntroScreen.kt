@@ -9,28 +9,11 @@ import android.view.View
 import android.widget.VideoView
 import androidx.viewpager2.widget.ViewPager2
 import com.fatihb.gfmusic.model.IntroSlide
-import com.fatihb.gfmusic.adapter.IntroSliderAdapter
 import com.fatihb.gfmusic.R
+import com.fatihb.gfmusic.adapter.IntroSliderAdapter
 import kotlinx.android.synthetic.main.activity_intro_screen.*
 
 class IntroScreen : AppCompatActivity() {
-
-    private val introSliderAdapter = IntroSliderAdapter(
-        listOf(
-            IntroSlide(
-                "ARAMIZA HOŞGELDİN",
-                "G.F'ine göre özgürce müzik için kaydol."
-            ),
-            IntroSlide(
-                "ARA",
-                "En geniş müzik arşivinden istediğin şarkıyı veya sanatçıyı dinle"
-            ),
-            IntroSlide(
-                "KALİTELİ MÜZİĞE ULAŞ",
-                "Yüksek kalitede müziğin ritmini hisset."
-            )
-        )
-    )
 
     private val sliderHandler = Handler()
 
@@ -38,21 +21,32 @@ class IntroScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro_screen)
 
+        val introString = ArrayList<IntroSlide>()
 
-        introSlider.adapter = introSliderAdapter
+        introString.add(IntroSlide(
+            "ARAMIZA HOŞGELDİN",
+            "G.F'ine göre özgürce müzik için kaydol."
+        ))
+        introString.add(IntroSlide(
+            "ARA",
+            "En geniş müzik arşivinden istediğin şarkıyı veya sanatçıyı dinle"
+        ))
+        introString.add(IntroSlide(
+            "KALİTELİ MÜZİĞE ULAŞ",
+            "Yüksek kalitede müziğin ritmini hisset."
+        ))
+
+
+
+        introSlider.adapter = IntroSliderAdapter(introString,introSlider)
 
         introSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 sliderHandler.removeCallbacks(sliderRunnable)
                 sliderHandler.postDelayed(sliderRunnable,3000)
-
             }
         })
-    }
-
-    private val run = Runnable {
-        introSlider.adapter = introSliderAdapter
     }
 
     private val sliderRunnable = Runnable {
