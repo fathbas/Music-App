@@ -68,6 +68,7 @@ class MusicList : BaseActivity() {
         musicList.adapter = adapter
 
         musicList.setOnItemClickListener { parent, view, position, id ->
+
             val fragment = MusicPlayer()
             fragment.setData(songResolver, songCursor, songUri, position, listOfSong,exit,refreshLay,musicList)
             openFragment(fragment, R.id.mediaPlayer)

@@ -4,8 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.VideoView
+import androidx.viewpager2.widget.ViewPager2
 import com.fatihb.gfmusic.model.IntroSlide
 import com.fatihb.gfmusic.adapter.IntroSliderAdapter
 import com.fatihb.gfmusic.R
@@ -30,11 +32,31 @@ class IntroScreen : AppCompatActivity() {
         )
     )
 
+    private val sliderHandler = Handler()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro_screen)
 
+
         introSlider.adapter = introSliderAdapter
+
+        introSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                sliderHandler.removeCallbacks(sliderRunnable)
+                sliderHandler.postDelayed(sliderRunnable,3000)
+
+            }
+        })
+    }
+
+    private val run = Runnable {
+        introSlider.adapter = introSliderAdapter
+    }
+
+    private val sliderRunnable = Runnable {
+        introSlider.currentItem = introSlider.currentItem + 1
     }
 
     override fun onResume() {

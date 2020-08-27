@@ -23,7 +23,6 @@ class IntroSliderAdapter(private val introSlides: List<IntroSlide>)
 
     override fun onBindViewHolder(holder: IntroSlideViewHolder, position: Int) {
         holder.bind(introSlides[position])
-
     }
 
     override fun getItemCount(): Int {
