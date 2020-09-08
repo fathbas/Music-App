@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.Toast
 import android.widget.VideoView
 import androidx.viewpager2.widget.ViewPager2
 import com.fatihb.gfmusic.model.IntroSlide
@@ -77,15 +78,30 @@ class IntroScreen : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 24 && resultCode == 1001){
+            println("yarrak program")
+            val intent = Intent(this,MusicList::class.java)
+            startActivity(intent)
+            finish()
+        }
+        if(requestCode == 24 && resultCode == 1002){
+            val intent = Intent(this,LoginActivity::class.java)
+            intent.putExtra("name", data?.getStringExtra("name"))
+            intent.putExtra("surname", data?.getStringExtra("surname"))
+            startActivityForResult(intent,24)
+        }
+
+    }
+
     fun enterLogin(view: View){
         val intent = Intent(this,LoginActivity::class.java)
-        startActivity(intent)
-        finish()
+        startActivityForResult(intent, 24)
     }
 
     fun enterSignUp(view: View){
         val intent = Intent(this,SignUpActivity::class.java)
-        startActivity(intent)
-        finish()
+        startActivityForResult(intent, 24)
     }
 }

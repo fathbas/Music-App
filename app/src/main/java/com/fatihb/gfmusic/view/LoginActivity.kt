@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.Toast
 import com.fatihb.gfmusic.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -29,9 +32,9 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful){
                     if (auth.currentUser!!.isEmailVerified){
                         Toast.makeText(applicationContext,"Hoşgeldiniz: ${auth.currentUser!!.displayName.toString()} bey",Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this,MusicList::class.java)
-                        startActivity(intent)
-                        finish()
+                        val intent = Intent()
+                        this@LoginActivity.setResult(1001, intent)
+                        this@LoginActivity.finish()
                     }else{
                         Toast.makeText(applicationContext,"Lütfen e-postanızı aktive edin.",Toast.LENGTH_SHORT).show()
                     }

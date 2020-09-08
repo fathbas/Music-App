@@ -7,13 +7,19 @@ import android.view.View
 import android.widget.Toast
 import com.fatihb.gfmusic.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.actionCodeSettings
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var user: FirebaseUser
+    private lateinit var database: FirebaseDatabase
+    private lateinit var ref: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +50,13 @@ class SignUpActivity : AppCompatActivity() {
                               Toast.makeText(applicationContext,it.exception.toString(),Toast.LENGTH_LONG).show()
                           }
                       }
-
-                      val intent = Intent(this,LoginActivity::class.java)
-                      startActivity(intent)
+                      user = auth.currentUser!!
+                      database = FirebaseDatabase.getInstance()
+                      ref = database.getReference("info/" + user.uid)
+                      addData(name.text.toString(), surname.text.toString())
+                      val intent = Intent()
+                      this.setResult(1002, intent)
+                      this.finish()
                   }
               }.addOnFailureListener { exception ->
                   if (exception != null){
@@ -56,6 +66,12 @@ class SignUpActivity : AppCompatActivity() {
           }else{
               Toast.makeText(applicationContext,"E-postanız veya Şifreniz hatalı!",Toast.LENGTH_LONG).show()
           }
+    }
+    private fun addData(name: String, surname: String){
+        val map = mutableMapOf<String, String>()
+        map["name"] = name
+        map["surname"] = surname
+        ref.setValue(map)
     }
 
     override fun onBackPressed() {
