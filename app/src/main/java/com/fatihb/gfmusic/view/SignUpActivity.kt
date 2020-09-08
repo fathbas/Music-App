@@ -20,7 +20,6 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var ref: DatabaseReference
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -33,17 +32,13 @@ class SignUpActivity : AppCompatActivity() {
          val password = passw.text.toString()
          val nameAndSurname = name.text.toString()+ " " + surname.text.toString()
          if (email != null && password != null){
-
              auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {task ->
                   if (task.isSuccessful){
-
                       val profileUpdates = userProfileChangeRequest {
                           displayName = nameAndSurname
                       }
                       auth.currentUser!!.updateProfile(profileUpdates)
-
                       auth.currentUser!!.sendEmailVerification().addOnCompleteListener {
-
                           if (it.isSuccessful){
                               Toast.makeText(applicationContext,"Kayıt başarılı! Lütfen e-postanızı aktive edin.",Toast.LENGTH_LONG).show()
                           }else{
@@ -67,6 +62,7 @@ class SignUpActivity : AppCompatActivity() {
               Toast.makeText(applicationContext,"E-postanız veya Şifreniz hatalı!",Toast.LENGTH_LONG).show()
           }
     }
+
     private fun addData(name: String, surname: String){
         val map = mutableMapOf<String, String>()
         map["name"] = name

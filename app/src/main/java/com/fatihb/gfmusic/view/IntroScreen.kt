@@ -17,12 +17,13 @@ import kotlinx.android.synthetic.main.activity_intro_screen.*
 class IntroScreen : AppCompatActivity() {
 
     private val sliderHandler = Handler()
+    private var introString = arrayListOf<IntroSlide>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro_screen)
 
-        val introString = ArrayList<IntroSlide>()
+         introString = ArrayList<IntroSlide>()
 
         introString.add(IntroSlide(
             "ARAMIZA HOŞGELDİN",
@@ -41,6 +42,8 @@ class IntroScreen : AppCompatActivity() {
 
         introSlider.adapter = IntroSliderAdapter(introString,introSlider)
 
+        worm_dots_indicator.setViewPager2(introSlider)
+
         introSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -51,7 +54,11 @@ class IntroScreen : AppCompatActivity() {
     }
 
     private val sliderRunnable = Runnable {
-        introSlider.currentItem = introSlider.currentItem + 1
+        if (introSlider.currentItem == introString.size - 1){
+            introSlider.currentItem = 0
+        }else{
+            introSlider.currentItem = introSlider.currentItem + 1
+        }
     }
 
     override fun onResume() {
@@ -81,7 +88,6 @@ class IntroScreen : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 24 && resultCode == 1001){
-            println("yarrak program")
             val intent = Intent(this,MusicList::class.java)
             startActivity(intent)
             finish()

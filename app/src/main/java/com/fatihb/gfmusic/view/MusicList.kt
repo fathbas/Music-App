@@ -21,24 +21,16 @@ import kotlinx.android.synthetic.main.activity_music_list.*
 class MusicList : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
-
     private lateinit var listOfSong : ArrayList<String>
-
     private lateinit var songCursor: Cursor
-
     private lateinit var songUri: Uri
-
     private lateinit var songResolver: ContentResolver
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_music_list)
 
-
-
         auth = FirebaseAuth.getInstance()
-
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(
@@ -61,7 +53,6 @@ class MusicList : BaseActivity() {
     }
 
     private fun doStuff(){
-
         listOfSong = ArrayList()
         getMusic()
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listOfSong)
@@ -72,8 +63,6 @@ class MusicList : BaseActivity() {
             openFragment(fragment, R.id.mediaPlayer)
         }
     }
-
-
 
     private fun getMusic(){
         songResolver = contentResolver
@@ -89,7 +78,6 @@ class MusicList : BaseActivity() {
             }while (songCursor.moveToNext())
         }
     }
-
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -118,6 +106,4 @@ class MusicList : BaseActivity() {
         startActivity(intent)
         finish()
     }
-
-
 }

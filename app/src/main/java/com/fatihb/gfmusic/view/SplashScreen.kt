@@ -16,10 +16,8 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         auth = FirebaseAuth.getInstance()
-
         val currentUser = auth.currentUser
 
-        //Create variable for when later user can see login screen
         val background = object : Thread(){
             override fun run() {
                 super.run()
@@ -36,12 +34,9 @@ class SplashScreen : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }
-
-
                 }catch (e : Exception){
                     e.printStackTrace()
                 }
-
             }
         }
         background.start()

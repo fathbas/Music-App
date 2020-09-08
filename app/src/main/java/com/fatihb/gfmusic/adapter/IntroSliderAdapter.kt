@@ -25,9 +25,6 @@ class IntroSliderAdapter(private val introSlides: ArrayList<IntroSlide>, private
 
     override fun onBindViewHolder(holder: IntroSlideViewHolder, position: Int) {
         holder.bind(introSlides[position])
-        if (position == introSlides.size - 1){
-            viewPager2.post(run)
-        }
     }
 
     override fun getItemCount(): Int {
@@ -42,9 +39,5 @@ class IntroSliderAdapter(private val introSlides: ArrayList<IntroSlide>, private
             textTitle.text = introSlide.title
             textDescription.text = introSlide.description
         }
-    }
-    private val run = Runnable{
-        introSlides.addAll(introSlides)
-        notifyDataSetChanged()
     }
 }

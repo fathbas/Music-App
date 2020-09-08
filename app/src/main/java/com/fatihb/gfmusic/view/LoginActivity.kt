@@ -21,11 +21,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
-
     }
 
     fun enterAccount(view: View) {
-
         auth.signInWithEmailAndPassword(email.text.toString(),password.text.toString())
             .addOnCompleteListener { task->
 
@@ -42,7 +40,6 @@ class LoginActivity : AppCompatActivity() {
             }.addOnFailureListener { exception ->
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
             }
-
     }
 
     fun goSignUp(view: View) {
@@ -50,6 +47,7 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this,IntroScreen::class.java)

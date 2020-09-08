@@ -17,8 +17,6 @@ import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.fatihb.gfmusic.R
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.activity_music_list.*
 import kotlinx.android.synthetic.main.fragment_music_player.*
 import java.lang.Exception
 
@@ -46,10 +44,6 @@ class MusicPlayer : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun onResume() {
         super.onResume()
 
@@ -62,7 +56,6 @@ class MusicPlayer : Fragment() {
 
         var minute = py.duration/60000
         var second = (py.duration%1000)/100*10
-
         musicTime.text = minute.toString()+":"+second.toString()
 
         py.start()
@@ -109,9 +102,8 @@ class MusicPlayer : Fragment() {
                     cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.AudioColumns._ID))
                         .toLong()
                 ))
-                 minute = py.duration/60000
-                 second = (py.duration%1000)/100*10
-
+                minute = py.duration/60000
+                second = (py.duration%1000)/100*10
                 musicTime.text = minute.toString()+":"+second.toString()
 
                 py.start()
@@ -129,13 +121,10 @@ class MusicPlayer : Fragment() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
             }
-
         })
 
         goBack.setOnClickListener {
@@ -160,7 +149,7 @@ class MusicPlayer : Fragment() {
             this.listView = listView
     }
 
-    fun initSeekBar(){
+  private fun initSeekBar(){
         seekBar.max=py.duration
 
         val handler = Handler()
@@ -176,8 +165,7 @@ class MusicPlayer : Fragment() {
         },0)
     }
 
-    fun isFinish(){
-
+   private fun isFinish(){
             py.stop()
             py.reset()
             py.release()
@@ -204,5 +192,4 @@ class MusicPlayer : Fragment() {
             }
             initSeekBar()
     }
-
 }

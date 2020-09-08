@@ -43,7 +43,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="45dp"
         android:background="@android:color/transparent"
         android:lineSpacingExtra="8sp"
         android:onClick="enterLogin"
@@ -59,7 +59,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="45dp"
         android:background="@android:color/transparent"
         android:backgroundTint="#FFFFFF"
         android:lineSpacingExtra="8sp"
@@ -70,17 +70,6 @@
         android:typeface="normal"
         android:textColor="#1B1A1A"/>
 
-
-    <LinearLayout
-        android:id="@+id/indicatorsContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/Login"
-        android:layout_below="@+id/Logo"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:gravity="center"/>
-
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/introSlider"
         android:layout_width="match_parent"
@@ -89,6 +78,20 @@
         android:layout_above="@+id/Login"
         android:layout_below="@+id/Logo"
         android:overScrollMode="never" />
+
+    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+        android:id="@+id/worm_dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="110dp"
+        app:dotsColor="#BF5126"
+        app:dotsCornerRadius="8dp"
+        app:dotsSize="16dp"
+        app:dotsSpacing="4dp"
+        app:dotsStrokeColor="#1B1A1A"
+        app:dotsStrokeWidth="2dp" />
 
 
 </RelativeLayout>
